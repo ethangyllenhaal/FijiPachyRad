@@ -3,7 +3,7 @@ Last updated: 16 May 2024
 
 Repository for scripts and input files used in a study investigating the phylogeographic history of Pachycephala whistlers in Fiji. Everything is in subfolders within a zipped file. If you use something here, please cite us.
 
-This README describes the scripts and data files used for the afforementioned project. README for everything is below, but information for input files not included are there as well (denoted by $$$ at the start of the name). Those can be found a Dryad at a currently privated link.
+This README describes the scripts and data files used for the afforementioned project. README for everything is below, but information for input files not included are there as well (denoted by $$$ at the start of the name). Those can be found a Dryad at a currently privated link (https://doi.org/10.5061/dryad.k98sf7mft).
 
 _______________________________
 ------- Stacks pipeline -------
@@ -23,7 +23,7 @@ _______________________________
 
 PachyHybrid_PCA.R - R script for the 2 PCAs in the paper, with the first one walking through the process in detail. The graeffii (yellow-throated) PCA is in Figure 2. The other (all population) PCA is in Figure S1.
 
-pachy_*_75.vcf - 75% complete VCF files for subsets of the data (all yellow-throated and all RAD-seq samples).
+$$$pachy_*_75.vcf - 75% complete VCF files for subsets of the data (all yellow-throated and all RAD-seq samples).
 
 _______________________________
 ------------- sNMF ------------
@@ -33,7 +33,7 @@ _______________________________
 
 pachy_snmf.R - R script for the sNMF plot in the paper (Figure 2).
 
-pachy_nosingle_graef75 - 75% complete VCF file without singletons for all yellow-throated.
+$$$pachy_nosingle_graef75.vcf - 75% complete VCF file without singletons for all yellow-throated.
 
 _______________________________
 --------- Pairwise Fst --------
@@ -45,7 +45,7 @@ pairwise_Fst_vcftools.sh - Shell script used for calculating pairwise Fst betwee
 
 pops directory - Files used to specify populations.
 
-pachy_full75.vcf - 75% complete VCF file for the full dataset.
+$$$pachy_full75.vcf - 75% complete VCF file for the full dataset.
 
 _______________________________
 ------ RAD Phylogenetic -------
@@ -57,9 +57,9 @@ IQ-TREE Output in Figure 2. SVDQuartets output in Supplement.
 
 pachy_rad77_90.tre - IQ-TREE phylogeny for all samples.
 
-pachy_rad77_90.phylip - Input for IQ-TREE, a 75% complete phylip matrix, generated with Stacks and slight manual modifications (removing comment at the end).
+$$$pachy_rad77_90.phylip - Input for IQ-TREE, a 75% complete phylip matrix, generated with Stacks and slight manual modifications (removing comment at the end).
 
-pachy_*_90.nexus - Nexus alignments with taxset info used for SVDQuartets for all taxa and excluding Ovalau.
+$$$pachy_*_90.nexus - Nexus alignments with taxset info used for SVDQuartets for all taxa and excluding Ovalau.
 
 pachy_*_90_100kquart.nex - Nexus trees output by SVDQuartets (note that "branch times" are support values), generated with above files and 100k evaluated quartets.
 _______________________________
@@ -72,7 +72,7 @@ run_treemix.sh - Script of TreeMix commands to run, for 6 different migration va
 
 treemix_plot.R - Simple script for plotting TreeMix output, requires plotting functions provided by the developers.
 
-pachy_full90.treemix.gz - Input for treemix, produced by Stacks then gzipped (TreeMix likes gz input).
+$$$pachy_full90.treemix.gz - Input for treemix, produced by Stacks then gzipped (TreeMix likes gz input).
 
 _______________________________
 ------------ DSuite -----------
@@ -82,7 +82,7 @@ _______________________________
 
 run_D.sh - Shell script used for running Dsuite. The first one is used for the main ABBA/BABA results (Fig 3, Table S4-5), and the second excludes Ovalau to avoid over-estimating gene flow and allow more accurate multiple comparisons. Both had fbranch run, but only the first is presented in Figure S4).
 
-pachy_full90.vcf - Input VCF for the analysis.
+$$$pachy_full90.vcf - Input VCF for the analysis.
 
 topo{\_subset}.nwk pachy_[full/subset] - Topologies and population maps used for main and subset (i.e., no Ovalau) analysis. Note that the popmaps list the outgroup as Outgroup as opposed to a geographic/taxonomic name.
 
@@ -94,7 +94,7 @@ _______________________________
 
 windowed_fst_vcftools.sh - Wrapper shell script for using vcftools to generate windowed FST between a set of comma separated population pairs. Uses an unfiltered VCF and list of population pairs to be tested, plus a population directory full of population lists.
 
-pachy_full_fst.vcf - Unfiltered VCF used in this analysis. Filtering is done in VCFtools instead of stacks.
+$$$pachy_full_fst.vcf - Unfiltered VCF used in this analysis. Filtering is done in VCFtools instead of stacks.
 
 rename_fst.sh - Script for converting chromosome names to numbers in fst output for qqman. Numbers are simple integers, so chromosomes 1, 1A, and 1B and 1, 2, and 3. 
 
@@ -104,7 +104,7 @@ intervals.list - List of intervals in the reference, used by renaming script.
 
 fst_plot.R - R script for making Manhattan plots with qqman. Uses a function written for qqman users and makes 12 plots (3 main text only, 3 main and supp, 6 supp only; Fig 4 and S5).
 
-pop directory - Directory of population lists used to calculate FST.
+pop directory - Directory of population lists used to calculate FST. Note that this includes subsets not shown in paper or supplement, 
 _______________________________
 -- UCEs Phylogeny and Dating --
 
@@ -115,7 +115,7 @@ NOTE: Phylogenetic analyses were run by MJA (other scripts by EFG). Output in Fi
 
 beast95per_10runs_logcombined.tre - Phylogeny presented in Fig. 1, with PP values.
 
-pachy_fiji36_95per_*_HKYG-mrca.XML - XML files for individual BEAST runs, representing both the run parameters and the alignments used for the analysis.
+$$$pachy_fiji36_95per_*_HKYG-mrca.XML - XML files for individual BEAST runs, representing both the run parameters and the alignments used for the analysis.
 
 _______________________________
 -- References and annotation --
@@ -127,10 +127,10 @@ mask_repeats.slurm - Slurm script for running RepeatMasker. Takes in the pseudoc
 
 gemoma.slurm - Slurm script for running gemoma with NCBI annotations as reference (downloaded and renamed prior to script). This used a node with 1TB memory, but it didn't need all of it. Input (pachy_pseudochrom_zfRM.fasta) is from mask_repeats.slurm.
 
-pachy_original_ref.fasta - Reference output by Supernova, input into Satsuma for making pseudochromosomes.
+$$$pachy_original_ref.fasta - Reference output by Supernova, input into Satsuma for making pseudochromosomes.
 
-pachy_pseudochrom_ref.fasta - Base pseudochromosome reference, used for running Stacks.
+$$$pachy_pseudochrom_ref.fasta - Base pseudochromosome reference, used for running Stacks.
 
-pachy_pseudochrom_ref_shortname.fasta - Reference used as input for repeat masking, removed metadata in chromosome names from Satsuma.
+$$$pachy_pseudochrom_ref_shortname.fasta - Reference used as input for repeat masking, removed metadata in chromosome names from Satsuma.
 
-pachy_pseudochrom_zfRM.fasta - Reference used for annotation.
+$$$pachy_pseudochrom_zfRM.fasta - Reference used for annotation.
