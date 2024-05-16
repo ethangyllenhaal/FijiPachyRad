@@ -104,7 +104,7 @@ intervals.list - List of intervals in the reference, used by renaming script.
 
 fst_plot.R - R script for making Manhattan plots with qqman. Uses a function written for qqman users and makes 12 plots (3 main text only, 3 main and supp, 6 supp only; Fig 4 and S5).
 
-pop directory - Directory of population lists used to calculate FST. Note that this includes subsets not shown in paper or supplement, 
+pop directory - Directory of population lists used to calculate FST. 
 _______________________________
 -- UCEs Phylogeny and Dating --
 
