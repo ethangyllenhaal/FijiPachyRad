@@ -3,7 +3,7 @@ Last updated: 16 May 2024
 
 Repository for scripts and input files used in a study investigating the phylogeographic history of Pachycephala whistlers in Fiji. Everything is in subfolders within a zipped file. If you use something here, please cite us.
 
-This README describes the scripts and data files used for the afforementioned project. The data were collected using Illumina sequencing for RAD-seq libraries, largely following the Stacks reference-based pipeline. Scripts and input data file are in the same folder for a given analysis.
+This README describes the scripts and data files used for the afforementioned project. README for everything is below, but information for input files not included are there as well (denoted by $$$ at the start of the name). Those can be found a Dryad at a currently privated link.
 
 _______________________________
 ------- Stacks pipeline -------
