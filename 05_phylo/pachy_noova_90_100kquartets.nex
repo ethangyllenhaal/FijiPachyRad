@@ -1,0 +1,22 @@
+#NEXUS 
+
+Begin trees;  [Treefile saved Fri Mar 01 11:34:26 2024]
+[!
+>Data file = pachy_noova_noprob_90.nexus
+]
+	Translate
+		1 Taveuni,
+		2 VanuaE,
+		3 Rabi,
+		4 Kioa,
+		5 VanuaC,
+		6 VanuaW,
+		7 VitiS,
+		8 VitiN,
+		9 Kadavu,
+		10 OgeaLevu,
+		11 Vuagava,
+		12 Nendo
+		;
+tree 'PAUP_1' = [&U] (1:100,(((2:100,4:100):66,3:100):100,((5:100,6:100):51,(7:100,8:100):100):82):76,(9:100,((10:100,11:100):100,12:100):96):100);
+End;
