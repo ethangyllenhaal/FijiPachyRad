@@ -7,6 +7,7 @@ This README describes the scripts and data files used for the afforementioned pr
 
 _______________________________
 ------- Stacks pipeline -------
+
 --------- (01_stacks) ---------
 _______________________________
 
@@ -16,6 +17,7 @@ popmaps directory - Directory of population maps used to make subset input files
 
 _______________________________
 ----------- Adegenet ----------
+
 -------- (02_adegenet) --------
 _______________________________
 
@@ -25,6 +27,7 @@ pachy_*_75.vcf - 75% complete VCF files for subsets of the data (all yellow-thro
 
 _______________________________
 ------------- sNMF ------------
+
 ---------- (03_sNMF) ----------
 _______________________________
 
@@ -34,6 +37,7 @@ pachy_nosingle_graef75 - 75% complete VCF file without singletons for all yellow
 
 _______________________________
 --------- Pairwise Fst --------
+
 ------ (04_pairwise_Fst) ------
 _______________________________
 
@@ -45,6 +49,7 @@ pachy_full75.vcf - 75% complete VCF file for the full dataset.
 
 _______________________________
 ------ RAD Phylogenetic -------
+
 --------- (05_phylo) ----------
 _______________________________
 
@@ -59,6 +64,7 @@ pachy_*_90.nexus - Nexus alignments with taxset info used for SVDQuartets for al
 pachy_*_90_100kquart.nex - Nexus trees output by SVDQuartets (note that "branch times" are support values), generated with above files and 100k evaluated quartets.
 _______________________________
 ----------- Treemix -----------
+
 --------- (06_treemix) --------
 _______________________________
 
@@ -70,6 +76,7 @@ pachy_full90.treemix.gz - Input for treemix, produced by Stacks then gzipped (Tr
 
 _______________________________
 ------------ DSuite -----------
+
 --------- (07_DSuite) ---------
 _______________________________
 
@@ -77,10 +84,11 @@ run_D.sh - Shell script used for running Dsuite. The first one is used for the m
 
 pachy_full90.vcf - Input VCF for the analysis.
 
-topo{_subset}.nwk pachy_[full/subset] - Topologies and population maps used for main and subset (i.e., no Ovalau) analysis. Note that the popmaps list the outgroup as Outgroup as opposed to a geographic/taxonomic name.
+topo{\_subset}.nwk pachy_[full/subset] - Topologies and population maps used for main and subset (i.e., no Ovalau) analysis. Note that the popmaps list the outgroup as Outgroup as opposed to a geographic/taxonomic name.
 
 _______________________________
 ----- FST Manhattan Plots -----
+
 ------- (08_manhattan) --------
 _______________________________
 
@@ -99,6 +107,7 @@ fst_plot.R - R script for making Manhattan plots with qqman. Uses a function wri
 pop directory - Directory of population lists used to calculate FST.
 _______________________________
 -- UCEs Phylogeny and Dating --
+
 ---------- (09_UCEs) ----------
 _______________________________
 
@@ -110,6 +119,7 @@ pachy_fiji36_95per_*_HKYG-mrca.XML - XML files for individual BEAST runs, repres
 
 _______________________________
 -- References and annotation --
+
 ------- (10_annotation) -------
 _______________________________
 
