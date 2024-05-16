@@ -1,0 +1,83 @@
+#!/bin/bash
+
+#PBS -q debug
+#PBS -l nodes=1:ppn=8
+#PBS -l walltime=1:00:00
+#PBS -N _pachyrad
+#PBS -j oe
+#PBS -m ae
+#PBS -M egyllenhaal@unm.edu
+
+# By: Ethan Gyllenhaal
+# Last updated: 28 February 2024
+# Torque batch script for running Stacks in a reference-based assembly approach
+# process_radtags is not included here, but command looked like: 
+# process_radtags -f /path/to.fastq.gz -b /path/to/barcodes -o path/to/radseq_demulti/ \
+#	-i gzfastq -e ndeI -c -q -r -E phred33 
+
+# load miniconda environment with stacks and BWA included
+module load miniconda3
+source activate stacks-env
+
+# shortcut variable
+src=$PBS_O_WORKDIR
+
+# path to our genome scaffolded to Zebra Finch reference
+bwa_ref=$src/reference/pachy_pseudochrom_ref
+# index reference
+
+### Alignment
+
+bwa index -p $bwa_ref $bwa_ref.fasta
+
+# run BWA, get input bams
+# takes in a sample list file
+while read indiv
+do
+    echo ${indiv}
+    bwa mem -t 8 $bwa_ref $src/raw_reads/${indiv}.fq.gz > $src/sam_files/${indiv}.sam
+    samtools view -bS $src/sam_files/${indiv}.sam > $src/bam_files/${indiv}_unsort.bam
+    samtools sort $src/bam_files/${indiv}_unsort.bam -o $src/bam_files/${indiv}.bam
+    rm $src/sam_files/${indiv}.sam
+    rm $src/bam_files/${indiv}_unsort.bam
+done < $src/sample_list
+
+### Stacks section
+
+# Divided into the two gstacks runs, then populations runs with associated renaming steps
+
+# gstacks runs, only done for all samples and only yellow-throated (graeffii)
+gstacks -I $src/bam_files -M $src/popmaps/popmap_full -O $src/stacks_out/full/ -t 8
+gstacks -I $src/bam_files -M $src/popmaps/popmap_graeffii -O $src/stacks_out/graeffii/ -t 8
+
+# populations run for a 75% complete VCF of all taxa (other outputs not used here)
+# used a supplementary PCA
+populations -P $src/stacks_out/full -M $src/popmaps/popmap_full -O $src/populations_out/full \
+    --vcf -R .75 --write-random-snp --fstats --plink --smooth -t 8
+mv $src/populations_out/full/populations.snps.vcf $src/populations_out/output/pachy_full75.vcf
+
+# populations run for wildly used yellow-only dataset (PCA, FST)
+## 75% complete with singletons
+populations -P $src/stacks_out/graeffii -M $src/popmaps/popmap_graeffii -O $src/populations_out/graeffii \
+    --vcf -R .75 --write-random-snp --plink --smooth -t 8
+mv $src/populations_out/graeffii/populations.snps.vcf $src/populations_out/output/pachy_graeffii75.vcf
+
+# populations run for 75% complete matrix without singletons
+populations -P $src/stacks_out/graeffii -M $src/popmaps/popmap_graeffii -O $src/populations_out/graef_nosingle \
+    --vcf -R .75 --write-random-snp --min-mac 2 --plink --smooth -t 8
+mv $src/populations_out/graef_nosingle/populations.snps.vcf $src/populations_out/output/pachy_nosingle_graef75.vcf
+
+# populations run for treemix and Dsuite input
+populations -P $src/stacks_out/full -M $src/popmaps/popmap_full -O $src/populations_out/full90 \
+    --vcf --treemix -R .9 --write-random-snp -t 8
+mv $src/populations_out/full90/populations.treemix  $src/populations_out/output/pachy_full90.treemix
+
+# unpruned dataset used for generating manhattan plots
+populations -P $src/stacks_out/full -M $src/popmaps/popmap_full -O $src/populations_out/full_fst \
+    --vcf -t 8
+mv $src/populations_out/full_fst/populations.snps.vcf $src/populations_out/output/pachy_full_fst.vcf
+
+# phylip for phylogenetics
+populations -P $src/stacks_out/full -M $src/popmaps/popmap_indiv -O $src/populations_out/indiv \
+    -R .75 --phylip-var-all -t 8
+mv $src/populations_out/indiv/populations.all.phylip $src/populations_out/output/pachy_75.phylip
