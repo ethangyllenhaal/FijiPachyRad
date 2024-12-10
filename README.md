@@ -134,3 +134,14 @@ $$$pachy_pseudochrom_ref.fasta - Base pseudochromosome reference, used for runni
 $$$pachy_pseudochrom_ref_shortname.fasta - Reference used as input for repeat masking, removed metadata in chromosome names from Satsuma.
 
 $$$pachy_pseudochrom_zfRM.fasta - Reference used for annotation.
+
+_______________________________
+----- Phylogenetic Network ----
+------ (11_splitstree) ------
+_______________________________
+
+11_stampp_splitstree_input.R - R script for making distance matrix with VCF input.
+
+full_90_dist.phy - Distance matrix used for network.
+
+pachy_full90.vcf - 90% complete VCF file for the full dataset.
